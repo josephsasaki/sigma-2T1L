@@ -120,6 +120,10 @@ body {
   width: 50px;
   font-size: larger;
 }
+.main .error-box {
+  height: 50px;
+  color: red;
+}
 .main .check {
   height: 50px;
   width: 180px;

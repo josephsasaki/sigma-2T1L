@@ -2,19 +2,19 @@ function getUrl() {
   return window.location.href;
 }
 
-function onError(response) {
+function onRequestError(response) {
   alert(
     `Error Code: ${response.status}\nError Message: ${response.statusText}\nFrom URL: ${response.url}`
   );
 }
 
-
-function createStatement(text, index) {
+function createStatement(text, index, isLie) {
   const statementsBox = document.getElementById("statements");
   const newStatement = document.createElement('div');
   newStatement.setAttribute("class", "statement");
   newStatement.setAttribute("index", index);
-  newStatement.setAttribute("isSelected", false);
+  newStatement.setAttribute("isselected", false);
+  newStatement.setAttribute("isLie", isLie);
   const statementText = document.createElement('div');
   statementText.setAttribute("class", "text");
   statementText.setAttribute("id", "text");
@@ -27,7 +27,6 @@ function createStatement(text, index) {
   statementsBox.append(newStatement);
 }
 
-
 async function getRandomPuzzle() {
   let url = `${getUrl()}/puzzle`;
   const res = await fetch(url, {
@@ -35,7 +34,7 @@ async function getRandomPuzzle() {
     credentials: 'include'
   })
   if (res.status >= 300) {
-    onError(res);
+    onRequestError(res);
   }
   const data = await res.json();
   return data;
@@ -44,8 +43,9 @@ async function getRandomPuzzle() {
 function displayPuzzle(puzzle) {
   const nameBox = document.getElementById('name');
   nameBox.textContent = puzzle.name;
-  for (let i = 0; i < 3; i ++) {
-    createStatement(puzzle.statements[i], i);
+  for (let i = 0, isLie; i < 3; i ++) {
+    isLie = (puzzle.lie_index == i);
+    createStatement(puzzle.statements[i], i, isLie);
   }
 }
 
@@ -61,7 +61,6 @@ function selectStatementButton(index) {
       statement.setAttribute("isSelected", false)
       textDiv.style.backgroundColor = "#d0f2cd"
     }
-
   })
 }
 
@@ -70,3 +69,29 @@ async function load2T1L() {
   displayPuzzle(puzzle)
 }
 
+
+function displayUserError(message) {
+  const errorBox = document.getElementById("error-box");
+  errorBox.textContent = message;
+}
+
+function getSelectedStatement() {
+  const statements = document.getElementsByClassName('statement');
+  for (let i = 0, statement; i < 3; i++) {
+    statement = statements[i];
+    if (statement.getAttribute("isselected") == true) {
+      console.log("erfrg")
+      return statement;
+      
+    }
+  }
+  displayUserError("Please choose a statement you think is a lie!")
+  return null;
+}
+
+function check() {
+  const selectedStatement = getSelectedStatement();
+  if (selectedStatement == null) {
+    return;
+  }
+}
