@@ -8,6 +8,14 @@ def index():
     return current_app.send_static_file("index.html")
 
 
+@app.route("/random_game", methods=["GET"])
+def random_game():
+    """Returns a random selected puzzle from the database."""
+    if request.method == "GET":
+        ...
+    return {"error": "Invalid request method for route."}, 400
+
+
 if __name__ == "__main__":
     app.config['TESTING'] = True
     app.config['DEBUG'] = True
