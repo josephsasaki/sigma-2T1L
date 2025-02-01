@@ -9,15 +9,19 @@ function onError(response) {
 }
 
 
-function createStatement(text) {
+function createStatement(text, index) {
   const statementsBox = document.getElementById("statements");
   const newStatement = document.createElement('div');
   newStatement.setAttribute("class", "statement");
+  newStatement.setAttribute("index", index);
+  newStatement.setAttribute("isSelected", false);
   const statementText = document.createElement('div');
   statementText.setAttribute("class", "text");
+  statementText.setAttribute("id", "text");
   statementText.textContent = text
   const statementButton = document.createElement('div');
-  statementButton.setAttribute("class", "button");
+  statementButton.setAttribute("class", "selector button");
+  statementButton.setAttribute("onclick", `selectStatementButton(${index})`);
   newStatement.appendChild(statementText);
   newStatement.appendChild(statementButton);
   statementsBox.append(newStatement);
@@ -40,8 +44,24 @@ async function getRandomPuzzle() {
 function displayPuzzle(puzzle) {
   const nameBox = document.getElementById('name');
   nameBox.textContent = puzzle.name;
-  puzzle.statements.forEach(statement => {
-    createStatement(statement)
+  for (let i = 0; i < 3; i ++) {
+    createStatement(puzzle.statements[i], i);
+  }
+}
+
+function selectStatementButton(index) {
+  const statements = document.getElementsByClassName('statement');
+
+  Array.from(statements).forEach(statement => {
+    let textDiv = statement.firstChild;
+    if (statement.getAttribute("index") == index) {
+      statement.setAttribute("isSelected", true)
+      textDiv.style.backgroundColor = "#e1b8b8"
+    } else {
+      statement.setAttribute("isSelected", false)
+      textDiv.style.backgroundColor = "#d0f2cd"
+    }
+
   })
 }
 

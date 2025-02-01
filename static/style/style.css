@@ -2,8 +2,11 @@
   --header-height: 80px;
   --theme-color: #ffccb3;
   --shadow-theme-color: #FF9A68;
+  --dark-theme-color: #d86328;
   --gray-color: rgb(227, 227, 227);
   --font-color: #404040;
+  --lie-color: #e1b8b8;
+  --truth-color: #d0f2cd;
 }
 
 html, body {
@@ -37,6 +40,33 @@ body {
   height: 50px;
 }
 
+.button {
+  background-color: var(--theme-color);
+  box-shadow: 0px -7px inset var(--shadow-theme-color);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  cursor: pointer;
+  color: var(--font-color);
+}
+
+.button:hover {
+  color: white;
+  background-color: var(--shadow-theme-color);
+  box-shadow: 0px -7px inset var(--dark-theme-color);
+}
+
+.button:active {
+  color: white;
+  background-color: var(--shadow-theme-color);
+  box-shadow: 0px -3px inset var(--dark-theme-color);
+  transform: translateY(4px);
+}
+
 .main {
   position: absolute;
   display: flex;
@@ -45,32 +75,18 @@ body {
   flex-direction: column;
   margin-top: 20px;
   height: 80%;
+  gap: 40px;
   top: var(--header-height);
 }
-.main .generate-button {
+.main .button.generate {
   height: 60px;
   width: 400px;
-  background-color: var(--theme-color);
-  border-radius: 10px;
-  box-shadow: 0px -5px inset var(--shadow-theme-color);
-  margin-bottom: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
-  cursor: pointer;
   font-size: 1.7em;
-  color: var(--font-color);
 }
 .main .name {
   height: 50px;
   width: 300px;
-  background-color: var(--theme-color);
   border-radius: 10px;
-  box-shadow: 0px -5px inset var(--shadow-theme-color);
-  margin-bottom: 60px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -99,13 +115,13 @@ body {
   display: flex;
   align-items: center;
 }
-.main .statements .statement .button {
+.main .statements .statement .selector {
   height: 50px;
   width: 50px;
-  border-radius: 10px;
-  border: 2px solid var(--theme-color);
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
-  cursor: pointer;
+  font-size: larger;
+}
+.main .check {
+  height: 50px;
+  width: 180px;
+  font-size: 1.2em;
 }/*# sourceMappingURL=style.css.map */

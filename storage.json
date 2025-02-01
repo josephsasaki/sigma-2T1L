@@ -5,5 +5,26 @@
         "lie": "This is my lie!",
         "truth_1": "This is my first truth!",
         "truth_2": "This is my second truth!"
+    },
+    {
+        "id": 2,
+        "name": "Ishvind Grewal",
+        "lie": "This is my lie!",
+        "truth_1": "This is my first truth!",
+        "truth_2": "This is my second truth!"
+    },
+    {
+        "id": 3,
+        "name": "Eesa Siddiqi",
+        "lie": "This is my lie!",
+        "truth_1": "This is my first truth!",
+        "truth_2": "This is my second truth!"
+    },
+    {
+        "id": 4,
+        "name": "Josh Allen",
+        "lie": "This is my lie!",
+        "truth_1": "This is my first truth!",
+        "truth_2": "This is my second truth!"
     }
 ]
