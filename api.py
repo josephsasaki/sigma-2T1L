@@ -1,5 +1,7 @@
 from flask import Flask, current_app, request
 
+from actions import choose_random_puzzle
+
 app = Flask(__name__)
 
 
