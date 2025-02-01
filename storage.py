@@ -8,7 +8,8 @@ from puzzles import Puzzle
 def load_from_file() -> list[Puzzle]:
     """Load the puzzles from a file called storage.json"""
     with open("storage.json", mode="r", encoding="UTF-8") as f:
-        return Puzzle.json_to_obj(load(f))
+        data = load(f)
+        return Puzzle.json_to_obj(data)
 
 
 def save_to_file(puzzles: list[Puzzle]) -> None:

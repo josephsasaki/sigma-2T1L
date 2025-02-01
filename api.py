@@ -10,11 +10,12 @@ def index():
     return current_app.send_static_file("index.html")
 
 
-@app.route("/random_game", methods=["GET"])
-def random_game():
+@app.route("/puzzle", methods=["GET"])
+def puzzle():
     """Returns a random selected puzzle from the database."""
     if request.method == "GET":
-        ...
+        random_puzzle = choose_random_puzzle()
+        return random_puzzle.to_json(), 200
     return {"error": "Invalid request method for route."}, 400
 
 

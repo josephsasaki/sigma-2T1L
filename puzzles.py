@@ -2,13 +2,16 @@
 
 class Puzzle():
 
-    def json_to_obj(cls, puzzles: list[dict[str]]) -> list["Puzzle"]:
+    @staticmethod
+    def json_to_obj(puzzles: list[dict[str]]) -> list["Puzzle"]:
         """Takes the json data on puzzles and produces the puzzle objects."""
         # Check argument is valid
         if not isinstance(puzzles, list):
             raise TypeError("Unexpected puzzles argument type.")
         if not all(isinstance(puzzle, dict) for puzzle in puzzles):
             raise TypeError("Unexpected puzzles argument type.")
+        if any(puzzle.get("id") is None for puzzle in puzzles):
+            raise KeyError("ID key missing from puzzle data.")
         if any(puzzle.get("name") is None for puzzle in puzzles):
             raise KeyError("Name key missing from puzzle data.")
         if any(puzzle.get("lie") is None for puzzle in puzzles):
@@ -21,6 +24,7 @@ class Puzzle():
         obj_list = []
         for puzzle in puzzles:
             obj_puzzle = Puzzle(
+                p_id=puzzle.get("id"),
                 name=puzzle.get("name"),
                 lie=puzzle.get("lie"),
                 truths=[puzzle.get("truth_1"), puzzle.get("truth_2")]
@@ -28,7 +32,8 @@ class Puzzle():
             obj_list.append(obj_puzzle)
         return obj_list
 
-    def obj_to_json(cls, puzzles: list["Puzzle"]) -> list[dict[str]]:
+    @staticmethod
+    def obj_to_json(puzzles: list["Puzzle"]) -> list[dict[str]]:
         """Takes a list of puzzles and converts it to a json object to dump in storage."""
         # Check argument is valid
         if not isinstance(puzzles, list):
@@ -38,17 +43,13 @@ class Puzzle():
 
         json_list = []
         for puzzle in puzzles:
-            json_puzzle = {
-                "name": puzzle.get_name(),
-                "lie": puzzle.get_lie(),
-                "truth_1": puzzle.get_truths()[0],
-                "truth_2": puzzle.get_truths()[1],
-            }
-            json_list.append(json_puzzle)
+            json_list.append(puzzle.to_json())
         return json_list
 
-    def __init__(self, name: str, lie: str, truths: list[str]) -> None:
+    def __init__(self, p_id: int, name: str, lie: str, truths: list[str]) -> None:
         # Check arguments are valid
+        if not isinstance(p_id, int):
+            raise TypeError("Unexpected id argument type.")
         if not isinstance(name, str):
             raise TypeError("Unexpected name argument type.")
         if name == "":
@@ -66,9 +67,14 @@ class Puzzle():
         if any(truth == "" for truth in truths):
             raise TypeError("Truth argument cannot be empty.")
 
+        self.__id = p_id
         self.__name = name
         self.__lie = lie
         self.__truths = truths
+
+    def get_id(self) -> int:
+        """Get the puzzle's id."""
+        return self.__id
 
     def get_name(self) -> str:
         """Get the puzzle's person's name."""
@@ -81,3 +87,13 @@ class Puzzle():
     def get_truths(self) -> list[str]:
         """Get the puzzle's truths."""
         return self.__truths
+
+    def to_json(self) -> dict[str]:
+        """Return the puzzle formatted as a json object."""
+        return {
+            "id": self.__id,
+            "name": self.__name,
+            "lie": self.__lie,
+            "truth_1": self.__truths[0],
+            "truth_2": self.__truths[1],
+        }
