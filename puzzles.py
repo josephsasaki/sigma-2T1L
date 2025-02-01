@@ -1,3 +1,4 @@
+from random import shuffle
 
 
 class Puzzle():
@@ -43,7 +44,7 @@ class Puzzle():
 
         json_list = []
         for puzzle in puzzles:
-            json_list.append(puzzle.to_json())
+            json_list.append(puzzle.to_storage_json())
         return json_list
 
     def __init__(self, p_id: int, name: str, lie: str, truths: list[str]) -> None:
@@ -88,12 +89,23 @@ class Puzzle():
         """Get the puzzle's truths."""
         return self.__truths
 
-    def to_json(self) -> dict[str]:
-        """Return the puzzle formatted as a json object."""
+    def to_storage_json(self) -> dict[str]:
+        """Return the puzzle formatted as a json object to be stored in storage."""
         return {
             "id": self.__id,
             "name": self.__name,
             "lie": self.__lie,
             "truth_1": self.__truths[0],
             "truth_2": self.__truths[1],
+        }
+
+    def to_api_json(self) -> dict[str, int]:
+        """Return the puzzle formatted as a json object to be send via the api to the front-end."""
+        statements = [self.__lie, *self.__truths]
+        shuffle(statements)
+        lie_index = statements.index(self.__lie)
+        return {
+            "name": self.__name,
+            "statements": statements,
+            "lie_index": lie_index,
         }
