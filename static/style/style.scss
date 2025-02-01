@@ -123,8 +123,14 @@ body {
     }
 
     .error-box {
-        height: 50px;
-        color: red;
+        height: 1.5em;
+        color: rgb(108, 0, 0);
+        background-color: #e1b8b8;
+        border-radius: 5px;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        opacity: 0;
     }
 
     .check {

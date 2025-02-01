@@ -14,7 +14,7 @@ function createStatement(text, index, isLie) {
   newStatement.setAttribute("class", "statement");
   newStatement.setAttribute("index", index);
   newStatement.setAttribute("isselected", false);
-  newStatement.setAttribute("isLie", isLie);
+  newStatement.setAttribute("islie", isLie);
   const statementText = document.createElement('div');
   statementText.setAttribute("class", "text");
   statementText.setAttribute("id", "text");
@@ -62,6 +62,7 @@ function selectStatementButton(index) {
       textDiv.style.backgroundColor = "#d0f2cd"
     }
   })
+  hideUserError();
 }
 
 async function load2T1L() {
@@ -73,16 +74,21 @@ async function load2T1L() {
 function displayUserError(message) {
   const errorBox = document.getElementById("error-box");
   errorBox.textContent = message;
+  errorBox.style.opacity = 1;
+}
+
+function hideUserError() {
+  const errorBox = document.getElementById("error-box");
+  errorBox.textContent = "";
+  errorBox.style.opacity = 0;
 }
 
 function getSelectedStatement() {
   const statements = document.getElementsByClassName('statement');
   for (let i = 0, statement; i < 3; i++) {
     statement = statements[i];
-    if (statement.getAttribute("isselected") == true) {
-      console.log("erfrg")
+    if (statement.getAttribute("isselected") == "true") {
       return statement;
-      
     }
   }
   displayUserError("Please choose a statement you think is a lie!")
@@ -93,5 +99,11 @@ function check() {
   const selectedStatement = getSelectedStatement();
   if (selectedStatement == null) {
     return;
+  }
+  if (selectedStatement.getAttribute("islie")) {
+    
+  }
+  else {
+
   }
 }
