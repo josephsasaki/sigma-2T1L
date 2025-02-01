@@ -87,41 +87,67 @@ body {
         font-size: 1.5em;
         color: var(--font-color);
     }
-    .statements {
+    .container {
 
-        gap: 10px;
         display: flex;
-        flex-direction: column;
-        align-items: center;
+        flex-direction: row;
+        gap: 10px;
 
-        .statement {
+        .door {
+            width: 80px;
+            height: 242px;
+            overflow: hidden;
 
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: center;
-            gap: 10px;
+            .boxes {
+                transition: transform 2s ease-in-out;
+
+                .box {
+                    width: 80px;
+                    height: 80px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: xx-large;
+
+                }
+            }
             
-            .text {
-                width: 400px;
-                height: 50px;
-                border: 2px solid var(--shadow-theme-color);
-                border-radius: 10px;
-                padding: 10px;
-
-                display: flex;
-                align-items: center;
-            }
-
-            .selector {
-                height: 50px;
-                width: 50px;
-                font-size: larger;
-            }
         }
 
-    }
+        .statements {
 
+            gap: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .statement {
+
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                gap: 10px;
+                
+                .text {
+                    width: 400px;
+                    height: 50px;
+                    border: 2px solid var(--shadow-theme-color);
+                    border-radius: 10px;
+                    padding: 10px;
+
+                    display: flex;
+                    align-items: center;
+                }
+
+                .selector {
+                    height: 50px;
+                    width: 50px;
+                    font-size: larger;
+                }
+            }
+        }
+    }
     .error-box {
         height: 1.5em;
         color: rgb(108, 0, 0);
@@ -132,10 +158,10 @@ body {
         align-items: center;
         opacity: 0;
     }
-
     .check {
         height: 50px;
         width: 180px;
         font-size: 1.2em;
     }
+
 }

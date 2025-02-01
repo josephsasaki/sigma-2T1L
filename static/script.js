@@ -100,10 +100,56 @@ function check() {
   if (selectedStatement == null) {
     return;
   }
+  runSpinner();
   if (selectedStatement.getAttribute("islie")) {
-    
+
   }
   else {
 
   }
+}
+
+function getLieIndex() {
+  const statements = document.getElementsByClassName('statement');
+  for (let i = 0, statement; i < 3; i++) {
+    statement = statements[i];
+    if (statement.getAttribute("islie") == "true") {
+      return i;
+    }
+  }
+}
+
+function makeBoxes(boxes) {
+  // make the random boxes
+  const random_boxes_text = [
+    "✅","❌","❌","✅","❌","✅","❌","✅","✅","❌","✅","❌","❌","✅","❌","✅","❌","✅","✅","❌"]
+  for (let i = 0; i < 20; i++) {
+    let box = document.createElement("div");
+    box.classList.add("box");
+    box.textContent = random_boxes_text[i];
+    boxes.appendChild(box);
+  }
+  // add final correct boxes
+  const lieIndex = getLieIndex();
+  for (let i = 0; i < 3; i++) {
+    let box = document.createElement("div");
+    box.classList.add("box");
+    if (i == lieIndex) {
+      box.textContent = "❌";
+    } else {
+      box.textContent = "✅";
+    }
+    boxes.appendChild(box);
+  }
+}
+
+
+function runSpinner() {
+  const boxes = document.getElementById("boxes");
+  makeBoxes(boxes)
+  let boxHeight = 80;
+  let numberOfBoxes = boxes.childElementCount;
+  boxes.style.transform = `translateY(-${
+        boxHeight * (numberOfBoxes - 3)
+      }px)`;
 }

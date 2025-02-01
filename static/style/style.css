@@ -93,20 +93,41 @@ body {
   font-size: 1.5em;
   color: var(--font-color);
 }
-.main .statements {
+.main .container {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+.main .container .door {
+  width: 80px;
+  height: 242px;
+  overflow: hidden;
+}
+.main .container .door .boxes {
+  transition: transform 2s ease-in-out;
+}
+.main .container .door .boxes .box {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: xx-large;
+}
+.main .container .statements {
   gap: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.main .statements .statement {
+.main .container .statements .statement {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   gap: 10px;
 }
-.main .statements .statement .text {
+.main .container .statements .statement .text {
   width: 400px;
   height: 50px;
   border: 2px solid var(--shadow-theme-color);
@@ -115,7 +136,7 @@ body {
   display: flex;
   align-items: center;
 }
-.main .statements .statement .selector {
+.main .container .statements .statement .selector {
   height: 50px;
   width: 50px;
   font-size: larger;
