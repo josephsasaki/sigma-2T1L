@@ -1,24 +1,9 @@
 :root {
-    //--theme-color: #f6c4d3;
     --header-height: 80px;
+    --theme-color: #ffccb3;
+    --shadow-theme-color: #FF9A68;
     --gray-color: rgb(227, 227, 227);
-    /*
-    @media only screen and (max-width: 500px) {
-        --header-height: 80px;
-        --tile-width: 10vw;
-        --border-radius: 2vw;
-    }
-    @media only screen and (min-width: 500px) and (max-width: 1000px) {
-        
-        --tile-width: 45px;
-        --border-radius: 10px;
-    }
-    @media only screen and (min-width: 1000px) {
-        --header-height: 80px;
-        --tile-width: 45px;
-        --border-radius: 10px;
-    }
-        */
+    --font-color: #404040;
 }
 html, body {margin: 0; height: 100%; overflow: hidden}
 body {
@@ -49,6 +34,7 @@ body {
     position: absolute;
     display: flex;
     justify-content: center;
+    align-items: center;
     flex-direction: column;
     margin-top: 20px;
     height: 80%;
@@ -59,9 +45,9 @@ body {
         
         height: 60px;
         width: 400px;
-        background-color: #ffc18f;
+        background-color: var(--theme-color);
         border-radius: 10px;
-        box-shadow: 0px -5px inset #e28b43;
+        box-shadow: 0px -5px inset var(--shadow-theme-color);
         margin-bottom: 60px;
 
         display: flex;
@@ -71,6 +57,59 @@ body {
         cursor:pointer;
 
         font-size: 1.7em;
-        color: #404040;
+        color: var(--font-color);
+    }
+
+    .name {
+        height: 50px;
+        width: 300px;
+        background-color: var(--theme-color);
+        border-radius: 10px;
+        box-shadow: 0px -5px inset var(--shadow-theme-color);
+        margin-bottom: 60px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        font-size: 1.5em;
+        color: var(--font-color);
+    }
+    .statements {
+
+        gap: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .statement {
+
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            
+            .text {
+                width: 400px;
+                height: 50px;
+                border: 2px solid var(--shadow-theme-color);
+                border-radius: 10px;
+                padding: 10px;
+
+                display: flex;
+                align-items: center;
+            }
+
+            .button {
+                height: 50px;
+                width: 50px;
+                border-radius: 10px;
+                border: 2px solid var(--theme-color);
+                user-select: none;
+                cursor:pointer;
+            }
+        }
+
     }
 }

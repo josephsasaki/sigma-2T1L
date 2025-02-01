@@ -12,9 +12,12 @@ function onError(response) {
 function createStatement(text) {
   const statementsBox = document.getElementById("statements");
   const newStatement = document.createElement('div');
+  newStatement.setAttribute("class", "statement");
   const statementText = document.createElement('div');
+  statementText.setAttribute("class", "text");
   statementText.textContent = text
   const statementButton = document.createElement('div');
+  statementButton.setAttribute("class", "button");
   newStatement.appendChild(statementText);
   newStatement.appendChild(statementButton);
   statementsBox.append(newStatement);
@@ -37,9 +40,9 @@ async function getRandomPuzzle() {
 function displayPuzzle(puzzle) {
   const nameBox = document.getElementById('name');
   nameBox.textContent = puzzle.name;
-  createStatement(puzzle.lie)
-  createStatement(puzzle.truth_1)
-  createStatement(puzzle.truth_2)
+  puzzle.statements.forEach(statement => {
+    createStatement(statement)
+  })
 }
 
 async function load2T1L() {
