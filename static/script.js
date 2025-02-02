@@ -56,10 +56,10 @@ function selectStatementButton(index) {
     let textDiv = statement.firstChild;
     if (statement.getAttribute("index") == index) {
       statement.setAttribute("isSelected", true)
-      textDiv.style.backgroundColor = "#e1b8b8"
+      textDiv.style.backgroundColor = "#e1b8b8";
     } else {
       statement.setAttribute("isSelected", false)
-      textDiv.style.backgroundColor = "#d0f2cd"
+      textDiv.style.backgroundColor = "white";
     }
   })
   hideUserError();

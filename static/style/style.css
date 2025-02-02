@@ -130,7 +130,6 @@ body {
 .main .container .statements .statement .text {
   width: 400px;
   height: 50px;
-  border: 2px solid var(--shadow-theme-color);
   border-radius: 10px;
   padding: 10px;
   display: flex;

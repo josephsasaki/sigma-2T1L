@@ -2,29 +2,8 @@
     {
         "id": 1,
         "name": "Joseph Sasaki",
-        "lie": "This is my lie!",
-        "truth_1": "This is my first truth!",
-        "truth_2": "This is my second truth!"
-    },
-    {
-        "id": 2,
-        "name": "Ishvind Grewal",
-        "lie": "This is my lie!",
-        "truth_1": "This is my first truth!",
-        "truth_2": "This is my second truth!"
-    },
-    {
-        "id": 3,
-        "name": "Eesa Siddiqi",
-        "lie": "This is my lie!",
-        "truth_1": "This is my first truth!",
-        "truth_2": "This is my second truth!"
-    },
-    {
-        "id": 4,
-        "name": "Josh Allen",
-        "lie": "This is my lie!",
-        "truth_1": "This is my first truth!",
-        "truth_2": "This is my second truth!"
+        "lie": "I climbed Mount Everest three years ago.",
+        "truth_1": "Both my parents were ballet dancers for the Royal Ballet.",
+        "truth_2": "Tom Holland went to my secondary school, and I saw him at a parents evening."
     }
 ]
